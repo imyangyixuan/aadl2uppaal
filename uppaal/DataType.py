@@ -21,10 +21,3 @@ class DataType(object):
     @staticmethod
     def type2int(type:str):
         return DATA_TYPE[type]
-
-
-def test():
-    print(DataType.get_type(1))
-
-if __name__ == '__main__':
-    test()

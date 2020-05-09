@@ -1,5 +1,5 @@
 import unittest
-from uppaal.model.Declaration import Declaration
+from uppaal.Declaration import Declaration
 
 class TestDeclaration(unittest.TestCase):
 

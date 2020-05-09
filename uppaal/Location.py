@@ -8,5 +8,5 @@ class Location(object):
         self.is_urgent=False
         self.is_committed=False
         self.comments=''
-        self.testcode_on_enter=''
-        self.testcode_on_exit=''
+        self.test_code_on_enter=''
+        self.test_code_on_exit=''
