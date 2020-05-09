@@ -5,7 +5,7 @@ class TestDeclaration(unittest.TestCase):
 
     def test_add_(self):
         d=Declaration()
-        c=d.add_variable('int','a','2')
+        c=d.add_variable(1,'a','2')
         c.name='b'
         self.assertEqual(d.variable_declarations[0].name,c.name)
 

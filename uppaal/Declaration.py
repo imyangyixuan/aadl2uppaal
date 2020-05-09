@@ -1,4 +1,5 @@
 from .DataType import DataType
+from typing import List
 from .Constant import *
 
 class _VariableDec(object):
@@ -87,8 +88,8 @@ class _FunctionDec(object):
 
 class Declaration(object):
     def __init__(self):
-        self.variable_declarations = [_VariableDec]
-        self.function_declarations = [_FunctionDec]
+        self.variable_declarations = []
+        self.function_declarations = []
         return
 
     def add_variable(self,type:int,name:str,value:str):
@@ -130,7 +131,7 @@ class SystemDeclaration(object):
     def writer(self):
         system_declaration=''
         system_composed='system '
-        for process,i in enumerate(self.processes):
+        for i,process in enumerate(self.processes):
             system_declaration+=SYSTEM_DECLARATION.format(str(i),process)
             system_composed+='Process'+str(i)+','
         system_composed=system_composed[:-1]+';'
