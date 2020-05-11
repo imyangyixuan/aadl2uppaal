@@ -1,11 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<transition>
-		<source ref="id0"/>
-		<target ref="id1"/>
-		<label kind="select">test select</label>
-		<label kind="guard">a==1</label>
-		<label kind="synchronisation">sync test</label>
-		<label kind="assignment">update test</label>
-		<label kind="testcode">test code</label>
-		<label kind="comments">comments test</label>
-	</transition>
+	<nta>
+		<declaration>
+
+
+</declaration>
+		<template>
+			<name>trafficlight</name>
+			<declaration>
+int red=1;
+int green=0;
+
+
+int turn(int red,int green){
+	return red&amp;green;
+}
+</declaration>
+			<location id="id0">
+				<name>Red</name>
+			</location>
+			<location id="id1">
+				<name>Green</name>
+			</location>
+			<init ref="id0"/>
+			<transition>
+				<source ref="id0"/>
+				<target ref="id1"/>
+			</transition>
+			<transition>
+				<source ref="id1"/>
+				<target ref="id0"/>
+			</transition>
+		</template>
+		<system>
+Process0=trafficlight();
+
+
+system Process0;
+</system>
+		<queries/>
+	</nta>

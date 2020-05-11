@@ -36,8 +36,8 @@ class Transition(object):
         return
 
 
-    def writer(self):
-        doc=dom.Document()
+    def writer(self,doc:dom.Document):
+        #doc=dom.Document()
         node=doc.createElement('transition')
 
         source=doc.createElement('source')
@@ -83,5 +83,5 @@ class Transition(object):
             comments.appendChild(doc.createTextNode(self.comments))
             node.appendChild(comments)
 
-        doc.appendChild(node)
-        return doc
+        #doc.appendChild(node)
+        return node

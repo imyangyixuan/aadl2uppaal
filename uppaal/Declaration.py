@@ -106,12 +106,12 @@ class Declaration(object):
 
         return declaration
 
-    def writer(self):
-        doc=dom.Document()
+    def writer(self,doc:dom.Document):
+        #doc=dom.Document()
         node = doc.createElement("declaration")
         node.appendChild(doc.createTextNode(str(self)))
-        doc.appendChild(node)
-        return doc
+        #doc.appendChild(node)
+        return node
 
 
 
@@ -138,11 +138,12 @@ class SystemDeclaration(object):
         system_composed = system_composed[:-1] + ';'
         return system_declaration + '\n\n' + system_composed+'\n'
 
-    def writer(self):
-        doc=dom.Document()
-        node = doc.createElement("declaration")
+    def writer(self,doc:dom.Document):
+        #doc=dom.Document()
+        node = doc.createElement("system")
         node.appendChild(doc.createTextNode(str(self)))
-        doc.appendChild(node)
-        return doc
+        #doc.appendChild(node)
+        return node
+
 
 

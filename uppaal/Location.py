@@ -44,8 +44,8 @@ class Location(object):
             self.testcodeExit = on_exit
         return
 
-    def writer(self):
-        doc = dom.Document()
+    def writer(self,doc:dom.Document):
+        #doc = dom.Document()
         node = doc.createElement('location')
         node.setAttribute('id', self.id)
 
@@ -90,5 +90,5 @@ class Location(object):
             committed = doc.createElement('committed')
             node.appendChild(committed)
 
-        doc.appendChild(node)
-        return doc
+        #doc.appendChild(node)
+        return node
