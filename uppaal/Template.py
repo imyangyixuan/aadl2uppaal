@@ -4,6 +4,7 @@ from .Declaration import Declaration
 class Template(object):
     def __init__(self):
         self.name = ''
+        self.initial_location=''
         self.locations = []
         self.transitions = []
         self.declarations = Declaration()

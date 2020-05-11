@@ -28,8 +28,8 @@ class Test_Variable_Declaration(unittest.TestCase):
         return
 
     def test_writer(self):
-        self.assertEqual(self.v.writer(), 'int a=3;')
-        self.assertEqual(self.v1.writer(), 'int a;')
+        self.assertEqual(self.v.__str__(), 'int a=3;')
+        self.assertEqual(self.v1.__str__(), 'int a;')
         return
 
     def test_set(self):
@@ -102,7 +102,8 @@ class TestDeclaration(unittest.TestCase):
 
     def test_writer(self):
         result = 'int a=2;\nfloat b;\n\n\nint sum(int a,int b){\n\treturn a+b;\n}\nfloat increase_half(float v){\n\treturn v+0.5;\n}\n'
-        self.assertEqual(self.d.writer(), result)
+
+        self.assertEqual(self.d.__str__(), result)
         return
 
 
@@ -120,7 +121,8 @@ class TestSystemDeclaration(unittest.TestCase):
 
     def test_writer(self):
         result = 'Process0=a();\nProcess1=b();\n\n\nsystem Process0,Process1;'
-        self.assertEqual(result, self.sd.writer())
+
+        self.assertEqual(result, self.sd.__str__())
         return
 
 

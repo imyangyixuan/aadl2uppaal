@@ -1,5 +1,5 @@
 from .DataType import DataType
-from typing import List
+import xml.dom.minidom as dom
 from .Constant import *
 
 
@@ -32,14 +32,6 @@ class _VariableDec(object):
         else:
             return UNASSIGNED_VARIABLE_DECLARATION.format(DataType.type2str(self.type), self.name)
 
-    def writer(self):
-        '''
-                :return: the declaration string
-                '''
-        if self.is_assigned:
-            return ASSIGNED_VARIABLE_DECLARATION.format(DataType.type2str(self.type), self.name, self.value)
-        else:
-            return UNASSIGNED_VARIABLE_DECLARATION.format(DataType.type2str(self.type), self.name)
 
     def set_type(self, type: int):
         self.type = type
@@ -68,9 +60,6 @@ class _FunctionDec(object):
         return
 
     def __str__(self):
-        return FUNCTION_DECLARATION.format(DataType.type2str(self.type), self.name, self.param, self.code)
-
-    def writer(self):
         return FUNCTION_DECLARATION.format(DataType.type2str(self.type), self.name, self.param, self.code)
 
     def set_type(self, type: int):
@@ -106,16 +95,24 @@ class Declaration(object):
         self.function_declarations.append(declaration)
         return declaration
 
-    def writer(self):
-        declaration = ''
+    def __str__(self):
+        declaration = '\n'
         for variable_declaration in self.variable_declarations:
-            declaration += variable_declaration.writer() + '\n'
+            declaration += variable_declaration.__str__() + '\n'
 
         declaration += '\n\n'
         for function_declaration in self.function_declarations:
-            declaration += function_declaration.writer() + '\n'
+            declaration += function_declaration.__str__() + '\n'
 
         return declaration
+
+    def writer(self):
+        doc=dom.Document()
+        node = doc.createElement("declaration")
+        node.appendChild(doc.createTextNode(str(self)))
+        doc.appendChild(node)
+        return doc
+
 
 
 class SystemDeclaration(object):
@@ -132,11 +129,20 @@ class SystemDeclaration(object):
         self.processes.append(name)
         return
 
-    def writer(self):
-        system_declaration = ''
+    def __str__(self):
+        system_declaration = '\n'
         system_composed = 'system '
         for i, process in enumerate(self.processes):
             system_declaration += SYSTEM_DECLARATION.format(str(i), process)+'\n'
             system_composed += 'Process' + str(i) + ','
         system_composed = system_composed[:-1] + ';'
-        return system_declaration + '\n\n' + system_composed
+        return system_declaration + '\n\n' + system_composed+'\n'
+
+    def writer(self):
+        doc=dom.Document()
+        node = doc.createElement("declaration")
+        node.appendChild(doc.createTextNode(str(self)))
+        doc.appendChild(node)
+        return doc
+
+

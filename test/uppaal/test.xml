@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<transition>
+		<source ref="id0"/>
+		<target ref="id1"/>
+		<label kind="select">test select</label>
+		<label kind="guard">a==1</label>
+		<label kind="synchronisation">sync test</label>
+		<label kind="assignment">update test</label>
+		<label kind="testcode">test code</label>
+		<label kind="comments">comments test</label>
+	</transition>
