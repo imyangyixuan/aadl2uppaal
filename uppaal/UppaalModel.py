@@ -12,28 +12,28 @@ class UppaalModel(object):
         self.global_declarations = Declaration()
         self.templates = []
         self.system_declarations = SystemDeclaration()
-        self.queries=Query()
+        self.queries = Query()
         return
 
-    def add_global_variable_declaration(self,type:int,name:str,value:str):
-        return self.global_declarations.add_variable(type,name,value)
+    def add_global_variable_declaration(self, type: int, name: str, value: str):
+        return self.global_declarations.add_variable(type, name, value)
 
-    def add_global_function_declaration(self,type:int,name:str,param:str,code:str):
-        return self.global_declarations.add_function(type,name,param,code)
+    def add_global_function_declaration(self, type: int, name: str, param: str, code: str):
+        return self.global_declarations.add_function(type, name, param, code)
 
-    def add_template(self,name:str):
-        template=Template(name)
+    def add_template(self, name: str):
+        template = Template(name)
         self.templates.append(template)
         self.system_declarations.add_process(name)
         return template
 
-    def add_query(self,formual:str,comment:str):
-        self.queries.add(formual,comment)
+    def add_query(self, formual: str, comment: str):
+        self.queries.add(formual, comment)
         return
 
     def writer(self):
-        doc=dom.Document()
-        node=doc.createElement('nta')
+        doc = dom.Document()
+        node = doc.createElement('nta')
 
         node.appendChild(self.global_declarations.writer(doc))
 
@@ -46,8 +46,3 @@ class UppaalModel(object):
 
         doc.appendChild(node)
         return doc
-
-
-
-
-

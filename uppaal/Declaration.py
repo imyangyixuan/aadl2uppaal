@@ -32,7 +32,6 @@ class _VariableDec(object):
         else:
             return UNASSIGNED_VARIABLE_DECLARATION.format(DataType.type2str(self.type), self.name)
 
-
     def set_type(self, type: int):
         self.type = type
         return
@@ -47,7 +46,7 @@ class _VariableDec(object):
             if not self.is_assigned:
                 self.is_assigned = True
         else:
-            self.is_assigned=False
+            self.is_assigned = False
         return
 
 
@@ -106,13 +105,12 @@ class Declaration(object):
 
         return declaration
 
-    def writer(self,doc:dom.Document):
-        #doc=dom.Document()
+    def writer(self, doc: dom.Document):
+        # doc=dom.Document()
         node = doc.createElement("declaration")
         node.appendChild(doc.createTextNode(str(self)))
-        #doc.appendChild(node)
+        # doc.appendChild(node)
         return node
-
 
 
 class SystemDeclaration(object):
@@ -133,17 +131,14 @@ class SystemDeclaration(object):
         system_declaration = '\n'
         system_composed = 'system '
         for i, process in enumerate(self.processes):
-            system_declaration += SYSTEM_DECLARATION.format(str(i), process)+'\n'
+            system_declaration += SYSTEM_DECLARATION.format(str(i), process) + '\n'
             system_composed += 'Process' + str(i) + ','
         system_composed = system_composed[:-1] + ';'
-        return system_declaration + '\n\n' + system_composed+'\n'
+        return system_declaration + '\n\n' + system_composed + '\n'
 
-    def writer(self,doc:dom.Document):
-        #doc=dom.Document()
+    def writer(self, doc: dom.Document):
+        # doc=dom.Document()
         node = doc.createElement("system")
         node.appendChild(doc.createTextNode(str(self)))
-        #doc.appendChild(node)
+        # doc.appendChild(node)
         return node
-
-
-

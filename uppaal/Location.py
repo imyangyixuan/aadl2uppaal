@@ -44,8 +44,8 @@ class Location(object):
             self.testcodeExit = on_exit
         return
 
-    def writer(self,doc:dom.Document):
-        #doc = dom.Document()
+    def writer(self, doc: dom.Document):
+        # doc = dom.Document()
         node = doc.createElement('location')
         node.setAttribute('id', self.id)
 
@@ -55,31 +55,31 @@ class Location(object):
 
         if self.invariant:
             invariant = doc.createElement('label')
-            invariant.setAttribute('kind','invariant')
+            invariant.setAttribute('kind', 'invariant')
             invariant.appendChild(doc.createTextNode(self.invariant))
             node.appendChild(invariant)
 
         if self.exponentialrate:
             exponentialrate = doc.createElement('label')
-            exponentialrate.setAttribute('kind','exponentialrate')
+            exponentialrate.setAttribute('kind', 'exponentialrate')
             exponentialrate.appendChild(doc.createTextNode(self.exponentialrate))
             node.appendChild(exponentialrate)
 
         if self.testcodeEnter:
             testcodeEnter = doc.createElement('label')
-            testcodeEnter.setAttribute('kind','testcodeEnter')
+            testcodeEnter.setAttribute('kind', 'testcodeEnter')
             testcodeEnter.appendChild(doc.createTextNode(self.testcodeEnter))
             node.appendChild(testcodeEnter)
 
         if self.testcodeExit:
             testcodeExit = doc.createElement('label')
-            testcodeExit.setAttribute('kind','testcodeExit')
+            testcodeExit.setAttribute('kind', 'testcodeExit')
             testcodeExit.appendChild(doc.createTextNode(self.testcodeExit))
             node.appendChild(testcodeExit)
 
         if self.comments:
             comments = doc.createElement('label')
-            comments.setAttribute('kind','comments')
+            comments.setAttribute('kind', 'comments')
             comments.appendChild(doc.createTextNode(self.comments))
             node.appendChild(comments)
 
@@ -90,5 +90,5 @@ class Location(object):
             committed = doc.createElement('committed')
             node.appendChild(committed)
 
-        #doc.appendChild(node)
+        # doc.appendChild(node)
         return node
