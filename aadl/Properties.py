@@ -1,13 +1,15 @@
 
 class Property(object):
-    def __init__(self,name:str,type:str,value:str):
+    def __init__(self,name:str,type:str,value:str,unit:str):
         self.name=name
         self.type=type
         self.value=value
+        self.unit=unit
         return
 
-    def assign(self,value:str):
+    def assign(self,value:str,unit:str):
         self.value=value
+        self.unit=unit
         return
 
 

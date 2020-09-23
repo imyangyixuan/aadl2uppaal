@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 	<nta>
 		<declaration>
+int time=0;
+int count=0;
+int red=1;
+int red_time=30;
+int yellow=0;
+int yellow_time=3;
+int green=0;
+int green_time=20;
+int passenger=0;
+int passed=0;
 
 
 </declaration>
 		<template>
-			<name>trafficlight</name>
+			<name>Trafficlight</name>
 			<declaration>
-int red=1;
-int green=0;
 
 
-int turn(int red,int green){
-	return red&amp;green;
-}
 </declaration>
 			<location id="id0">
 				<name>Red</name>
@@ -21,18 +26,76 @@ int turn(int red,int green){
 			<location id="id1">
 				<name>Green</name>
 			</location>
+			<location id="id2">
+				<name>Yellow</name>
+			</location>
+			<location id="id3">
+				<name>End</name>
+			</location>
 			<init ref="id0"/>
 			<transition>
 				<source ref="id0"/>
+				<target ref="id0"/>
+				<label kind="guard">count&lt;red_time</label>
+				<label kind="assignment">time+=1,
+count+=1</label>
+			</transition>
+			<transition>
+				<source ref="id0"/>
 				<target ref="id1"/>
+				<label kind="guard">count==red_time</label>
+				<label kind="assignment">count=0,
+red=0,
+green=0</label>
 			</transition>
 			<transition>
 				<source ref="id1"/>
+				<target ref="id1"/>
+				<label kind="guard">count&lt;green_time</label>
+				<label kind="assignment">time+=1,
+count+=1</label>
+			</transition>
+			<transition>
+				<source ref="id1"/>
+				<target ref="id2"/>
+				<label kind="guard">count==green_time</label>
+				<label kind="assignment">count=0,
+green=0,
+yellow=1</label>
+			</transition>
+			<transition>
+				<source ref="id2"/>
+				<target ref="id2"/>
+				<label kind="guard">count&lt;yellow_time</label>
+				<label kind="assignment">count+=1,
+time+=1</label>
+			</transition>
+			<transition>
+				<source ref="id2"/>
 				<target ref="id0"/>
+				<label kind="guard">count==yellow_time</label>
+				<label kind="assignment">count=0,
+yellow=0,
+red=1</label>
+			</transition>
+			<transition>
+				<source ref="id0"/>
+				<target ref="id3"/>
+				<label kind="guard">time==100</label>
+			</transition>
+			<transition>
+				<source ref="id1"/>
+				<target ref="id3"/>
+				<label kind="guard">time==100</label>
+			</transition>
+			<transition>
+				<source ref="id2"/>
+				<target ref="id3"/>
+				<label kind="guard">time==100</label>
 			</transition>
 		</template>
 		<system>
-Process0=trafficlight();
+Process0=Trafficlight();
 
 
 system Process0;
