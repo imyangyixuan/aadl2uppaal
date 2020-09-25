@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<nta>
+		<declaration>
+int rwr=1;
+
+
+</declaration>
+		<template>
+			<name>rwr1</name>
+			<parameter>chan &amp;message1,chan &amp;message2</parameter>
+			<declaration>
+int b=-1;
+int counts=0;
+
+
+</declaration>
+			<location id="id0">
+				<name>rwr1_start</name>
+			</location>
+			<location id="id1">
+				<name>rwr1_1</name>
+			</location>
+			<location id="id2">
+				<name>rwr1_2</name>
+			</location>
+			<location id="id3">
+				<name>rwr1_3</name>
+			</location>
+			<location id="id4">
+				<name>rwr1_4</name>
+			</location>
+			<location id="id5">
+				<name>rwr1_end</name>
+			</location>
+			<init ref="id0"/>
+			<transition>
+				<source ref="id0"/>
+				<target ref="id1"/>
+			</transition>
+			<transition>
+				<source ref="id1"/>
+				<target ref="id2"/>
+				<label kind="guard">rwr == 1</label>
+			</transition>
+			<transition>
+				<source ref="id1"/>
+				<target ref="id5"/>
+				<label kind="guard">not(rwr == 1)</label>
+			</transition>
+			<transition>
+				<source ref="id4"/>
+				<target ref="id2"/>
+			</transition>
+			<transition>
+				<source ref="id2"/>
+				<target ref="id3"/>
+				<label kind="guard">counts &lt; 2</label>
+			</transition>
+			<transition>
+				<source ref="id3"/>
+				<target ref="id4"/>
+			</transition>
+			<transition>
+				<source ref="id2"/>
+				<target ref="id5"/>
+				<label kind="guard">not(counts &lt; 2)</label>
+			</transition>
+		</template>
+		<template>
+			<name>rwr2</name>
+			<parameter>chan &amp;message1,chan &amp;message2</parameter>
+			<declaration>
+int counts=0;
+
+
+</declaration>
+			<location id="id0">
+				<name>rwr2_start</name>
+			</location>
+			<location id="id1">
+				<name>rwr2_1</name>
+			</location>
+			<location id="id2">
+				<name>rwr2_2</name>
+			</location>
+			<location id="id3">
+				<name>rwr2_3</name>
+			</location>
+			<location id="id4">
+				<name>rwr2_end</name>
+			</location>
+			<init ref="id0"/>
+			<transition>
+				<source ref="id1"/>
+				<target ref="id4"/>
+				<label kind="guard">not(counts&lt;2)</label>
+			</transition>
+			<transition>
+				<source ref="id3"/>
+				<target ref="id1"/>
+			</transition>
+			<transition>
+				<source ref="id0"/>
+				<target ref="id1"/>
+			</transition>
+			<transition>
+				<source ref="id1"/>
+				<target ref="id2"/>
+				<label kind="guard">counts&lt;2</label>
+			</transition>
+			<transition>
+				<source ref="id2"/>
+				<target ref="id3"/>
+			</transition>
+		</template>
+		<system>
+chan ch0;
+chan ch1;
+
+Process0=rwr1(ch0,ch1);
+Process1=rwr2(ch0,ch1);
+
+
+system Process0,Process1;
+</system>
+		<queries/>
+	</nta>

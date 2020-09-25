@@ -1,8 +1,11 @@
-from .Model import Model
+from .AADLModel import AADLModel
 from uppaal.UppaalModel import UppaalModel
 
 class Translator(object):
-    def translate(self,aadl):
+    @staticmethod
+    def translate(aadl):
         uppaal = UppaalModel()
-        Model.translate(aadl,uppaal)
+        aadl.translate(uppaal)
+        fp = open(aadl.process.name+'.xml','w')
+        uppaal.writer().writexml(fp, indent='\t', addindent='\t', newl='\n', encoding="utf-8")
         return

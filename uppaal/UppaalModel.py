@@ -21,10 +21,11 @@ class UppaalModel(object):
     def add_global_function_declaration(self, type: int, name: str, param: str, code: str):
         return self.global_declarations.add_function(type, name, param, code)
 
-    def add_template(self, name: str):
+    def add_template(self, name: str,param=''):
         template = Template(name)
+        template.add_param(param)
         self.templates.append(template)
-        self.system_declarations.add_process(name)
+        self.system_declarations.add_template(template)
         return template
 
     def add_query(self, formual: str, comment: str):

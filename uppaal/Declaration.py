@@ -115,26 +115,30 @@ class Declaration(object):
 
 class SystemDeclaration(object):
     def __init__(self):
-        self.processes = []
+        self.templates = []
+        self.declarations=[]
         return
 
-    def add_process(self, name: str):
-        '''
-        add a process to the system declaration
-        :param name: the process name
-        :return:
-        '''
-        self.processes.append(name)
+    def add_template(self,template):
+        self.templates.append(template)
+        return
+
+    def add_variable_declaration(self,str):
+        self.declarations.append(str)
         return
 
     def __str__(self):
         system_declaration = '\n'
+        variable_decl = '\n'
         system_composed = 'system '
-        for i, process in enumerate(self.processes):
-            system_declaration += SYSTEM_DECLARATION.format(str(i), process) + '\n'
+        for i in self.declarations:
+            variable_decl+=i+';\n'
+
+        for i, template in enumerate(self.templates):
+            system_declaration += SYSTEM_DECLARATION.format(str(i), template.name,template.argu) + '\n'
             system_composed += 'Process' + str(i) + ','
         system_composed = system_composed[:-1] + ';'
-        return system_declaration + '\n\n' + system_composed + '\n'
+        return variable_decl + system_declaration + '\n\n' + system_composed + '\n'
 
     def writer(self, doc: dom.Document):
         # doc=dom.Document()

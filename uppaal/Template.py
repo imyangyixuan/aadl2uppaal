@@ -7,6 +7,8 @@ import xml.dom.minidom as dom
 class Template(object):
     def __init__(self, name: str):
         self.name = name
+        self.param = ''
+        self.argu=''
         self.initial_location = ''
         self.locations = []
         self.transitions = []
@@ -33,11 +35,23 @@ class Template(object):
     def add_function_declaration(self, type: int, name: str, param: str, code: str):
         return self.declarations.add_function(type, name, param, code)
 
+    def add_param(self,param):
+        self.param=param
+        return
+
+    def add_argu(self,argu):
+        self.argu=argu
+        return
+
     def writer(self, doc: dom.Document):
         node = doc.createElement('template')
         name = doc.createElement('name')
         name.appendChild(doc.createTextNode(self.name))
         node.appendChild(name)
+
+        param = doc.createElement('parameter')
+        param.appendChild(doc.createTextNode(self.param))
+        node.appendChild(param)
 
         node.appendChild(self.declarations.writer(doc))
 

@@ -18,6 +18,10 @@ class Data(object):
         self.value=0
         return
 
+    def show(self):
+        print('data {} | {} | {}'.format(self.name,self.type,self.value))
+        return
+
     def parse(self,node):
         self.name = node.getAttribute('name')
         self.parse_type(node)
@@ -27,7 +31,7 @@ class Data(object):
     def parse_type(self,node):
         one = node.getElementsByTagName(NODES['type'])[0]
         two = one.getAttribute('href')
-        self.value = TYPE_REVERSE[two]
+        self.type = TYPE_REVERSE[two]
         return
 
     def parse_value(self,node):
@@ -37,3 +41,6 @@ class Data(object):
         four = three.getElementsByTagName(NODES['value3'])[0]
         self.value = four.getAttribute('value')
         return
+
+    def translate(self,uppaal):
+        pass

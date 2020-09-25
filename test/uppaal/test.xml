@@ -16,6 +16,7 @@ int passed=0;
 </declaration>
 		<template>
 			<name>Trafficlight</name>
+			<parameter></parameter>
 			<declaration>
 
 
@@ -95,6 +96,7 @@ red=1</label>
 			</transition>
 		</template>
 		<system>
+
 Process0=Trafficlight();
 
 
